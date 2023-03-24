@@ -1,8 +1,9 @@
 import Icon from '../images/spotifyAppLogo.png';
 
 export default function Login(props){
+    //User must click on the login button and follow the link to login with Spotify
     return(
-        <div style={styles.back}>
+        <div id='interface'>
             <header style={styles.interface}>
                 <div style={styles.imgContainer}>
                     <a href='/'><img src={Icon} alt="spotify jazzed" style={styles.icon} /></a>
@@ -58,16 +59,17 @@ const styles = {
     loginMsg: {
         fontSize: 24,
         color: 'white',
-        textAlign:'center'
+        textAlign:'center',
+        fontFamily:"Georgia, 'Times New Roman', Times, serif"
     },
     login: {
         backgroundColor: '#C73482',
         color:'white',
-        textTransform:'uppercase',
         textDecoration:'none',
         marginBottom:'2%',
         padding:'10px',
         fontSize: 18,
-        borderRadius:'20px'
+        borderRadius:'20px',
+        fontFamily:"Georgia, 'Times New Roman', Times, serif"
     }
 }

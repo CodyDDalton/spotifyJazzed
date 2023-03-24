@@ -1,22 +1,24 @@
 import axios from 'axios';
 
+//setup storage_keys object and create properties for accessToken, refreshToken, expireTime, and timestamp
 const STORAGE_KEYS = {
     accessToken: 'spotify_access_token',
     refreshToken: 'spotify_refresh_token',
     expireTime: 'spotify_token_expire_time',
     timestamp: 'spotify_token_timestamp'
 }
-
+//store values for accessToken, refreshToken, expireTime, and timestamp from local storage
 const STORAGE_VALUES = {
     accessToken: window.localStorage.getItem(STORAGE_KEYS.accessToken),
     refreshToken: window.localStorage.getItem(STORAGE_KEYS.refreshToken),
     expireTime: window.localStorage.getItem(STORAGE_KEYS.expireTime),
     timestamp: window.localStorage.getItem(STORAGE_KEYS.timestamp)
 };
-
+//export search function to get logged in user details
 export const getUserProf = () => axios.get('/me')
 
 const hasTokenExpired = () => {
+    //checking whether the current accessToken has expired
     const { accessToken, timestamp, expireTime } = STORAGE_VALUES;
     if (!accessToken || !timestamp) {
         return false;
@@ -26,6 +28,7 @@ const hasTokenExpired = () => {
 };
 
 export const logout = () => {
+    //logging the user out and removing keys from local storage
     for(const property in STORAGE_KEYS) {
         window.localStorage.removeItem(STORAGE_KEYS[property])
     }
@@ -34,6 +37,7 @@ export const logout = () => {
 }
 
 const refreshToken = async () => {
+    //checking if there is a refresh token available
     try {
         if(!STORAGE_VALUES.refreshToken ||
             STORAGE_VALUES.refreshToken === 'undefined' ||
@@ -42,9 +46,9 @@ const refreshToken = async () => {
                 console.error('Refresh token unavailable');
                 logout();
             }
-
+            //Getting the refresh token
             const { data } = await axios.get(`/refresh_token?refresh_token=${STORAGE_VALUES.refreshToken}`);
-
+            //Switching out the old access token
             window.localStorage.setItem(STORAGE_KEYS.accessToken, data.access_token);
             window.localStorage.setItem(STORAGE_KEYS.timestamp, Date.now());
 
