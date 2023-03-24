@@ -7,6 +7,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#resultArt {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  margin-top:0;
+}
+
+#resultAlb {
+  display:none;
+  flex-direction:row;
+  justify-content:space-between;
+  margin-top:0;
+}
+
+#resultAud {
+  display:none;
+  flex-direction:row;
+  justify-content:space-between;
+  margin-top:0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -13,6 +13,28 @@
   }
 }
 
+
+#resultArt {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  margin-top:0;
+}
+
+#resultAlb {
+  display:none;
+  flex-direction:row;
+  justify-content:space-between;
+  margin-top:0;
+}
+
+#resultAud {
+  display:none;
+  flex-direction:row;
+  justify-content:space-between;
+  margin-top:0;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -1,6 +1,10 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
 import { accessToken, logout, getUserProf } from './spotify';
+import Login from './components/layouts/Login.js';
+import Results from './components/layouts/Results.js';
+import Bg from './components/images/spotifyJazzedBg.png';
+
 
 function App() {
 
@@ -28,27 +32,34 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App" style={styles.bg}>
       {!token ? (
-      <a 
-      className="App-Link" 
-      href="http://localhost:8888/login"
-      >
-        Login to Spotify
-      </a>
+        <>
+          <Login
+            href="http://localhost:8888/login"
+          />
+        </>
       ) : (
         <>
-        <h1>Welcome, {name}</h1>
-        <h5>You're Currently Logged In</h5>
-        <button onClick={logout}>Log Out</button>
+        <Results
+          accessToken={token}
+          name={name}
+          logout={logout}
+        />
         </>
       )}
-        
-        
-      </header>
     </div>
   );
 }
 
 export default App;
+
+const styles = {
+  bg: {
+    backgroundImage: `url(${Bg})`,
+    alignItems:'center',
+    height: '100vh',
+    width:'100vw',
+    position:'absolute'
+  },
+}
